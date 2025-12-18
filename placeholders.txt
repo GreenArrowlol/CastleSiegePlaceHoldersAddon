@@ -1,0 +1,100 @@
+Castle Siege Addon - PlaceholderAPI Placeholders
+=================================================
+
+PLAYER-SPECIFIC PLACEHOLDERS (require player context):
+-------------------------------------------------------
+
+Current Game Information:
+  %csaddon_current_arena%        - Name of arena player is currently in (or "None")
+  %csaddon_current_team%         - Player's current team name (or "None")
+  %csaddon_current_team_color%   - Player's team color code
+  %csaddon_is_playing%           - "true" if player is in a game, "false" otherwise
+  %csaddon_players_in_game%      - Number of players in current game
+  %csaddon_max_players%          - Max players for current game
+  %csaddon_game_state%           - Current game state (WAITING/STARTING/ACTIVE/ENDING/NONE)
+
+Session Statistics (current game only):
+  %csaddon_session_kills%        - Kills in current game session
+  %csaddon_session_deaths%       - Deaths in current game session
+  %csaddon_session_kdr%          - K/D ratio for current session (formatted to 2 decimals)
+
+Overall Statistics (from database):
+  %csaddon_total_kills%          - Total kills across all games
+  %csaddon_total_deaths%         - Total deaths across all games
+  %csaddon_total_wins%           - Total wins
+  %csaddon_total_losses%         - Total losses (calculated from games - wins)
+  %csaddon_total_games%          - Total games played
+  %csaddon_kdr%                  - Overall K/D ratio (formatted to 2 decimals)
+  %csaddon_win_rate%             - Win rate percentage (formatted to 1 decimal)
+  %csaddon_rank%                 - Rank based on kills (Beginner/Intermediate/Advanced/Expert/Master/Legend)
+
+ARENA-SPECIFIC PLACEHOLDERS (replace <arena> with arena name):
+---------------------------------------------------------------
+
+Arena Status:
+  %csaddon_status_<arena>%       - Arena status (WAITING/STARTING/ACTIVE/ENDING/OFFLINE)
+  %csaddon_enabled_<arena>%      - "true" if arena is enabled, "false" otherwise
+  %csaddon_complete_<arena>%     - "true" if arena setup is complete, "false" otherwise
+
+Arena Configuration:
+  %csaddon_name_<arena>%         - Display name of the arena
+  %csaddon_min_<arena>%          - Minimum players required
+  %csaddon_max_<arena>%          - Maximum players allowed
+  %csaddon_world_<arena>%        - World name where arena is located
+
+Player Counts:
+  %csaddon_current_<arena>%      - Current number of players in arena
+  %csaddon_attackers_<arena>%    - Number of players on Attackers team
+  %csaddon_defenders_<arena>%    - Number of players on Defenders team
+  %csaddon_spectators_<arena>%   - Number of spectators
+
+Player-Arena Relationship:
+  %csaddon_player_in_<arena>%    - "true" if player is in this specific arena
+  %csaddon_player_team_<arena>%  - Player's team in this specific arena (or "None")
+
+RANK SYSTEM:
+------------
+Based on total kills:
+  - Beginner:     0-49 kills
+  - Intermediate: 50-99 kills
+  - Advanced:     100-249 kills
+  - Expert:       250-499 kills
+  - Master:       500-999 kills
+  - Legend:       1000+ kills
+
+USAGE EXAMPLES:
+---------------
+
+Scoreboard:
+  &6&lCastle Siege
+  &7Arena: &e%csaddon_current_arena%
+  &7Team: %csaddon_current_team_color%%csaddon_current_team%
+  &7Players: &a%csaddon_players_in_game%&7/&a%csaddon_max_players%
+  &7
+  &eSession Stats:
+  &7Kills: &a%csaddon_session_kills%
+  &7Deaths: &c%csaddon_session_deaths%
+  &7K/D: &e%csaddon_session_kdr%
+
+Tab List:
+  &7[%csaddon_rank%&7] %player_name%
+  &7K/D: &e%csaddon_kdr% &7| Wins: &a%csaddon_total_wins%
+
+Arena Selector GUI:
+  &6&lCastle Main
+  &7Status: %csaddon_status_Castle_Main%
+  &7Players: &a%csaddon_current_Castle_Main%&7/&a%csaddon_max_Castle_Main%
+  &7
+  &7Attackers: &c%csaddon_attackers_Castle_Main%
+  &7Defenders: &9%csaddon_defenders_Castle_Main%
+
+Chat Format:
+  [%csaddon_rank%] %player_name%: message
+
+NOTES:
+------
+- Session stats reset when player leaves game
+- Overall stats are pulled from Castle Siege database
+- Arena-specific placeholders work even if player is not in that arena
+- All placeholders return safe defaults if data is unavailable
+- Rank calculation is based on total kills only

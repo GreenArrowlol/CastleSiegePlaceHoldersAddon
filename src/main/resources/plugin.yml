@@ -1,0 +1,7 @@
+name: CastleSiegePlaceholders
+version: '1.0'
+main: com.castlesiegeplaceholders.CastleSiegePlaceholders
+api-version: '1.13'
+depend: [CastleSiege, PlaceholderAPI]
+author: CastleSiegePlaceholders
+description: PlaceholderAPI expansion for Castle Siege
