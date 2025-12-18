@@ -55,7 +55,7 @@ items:
       - ''
       - '&eClick to join!'
     left_click_commands:
-      - '[player] cs join Castle_Main'
+      - '[player] csa join Castle_Main'
 ```
 
 ## Build Instructions
